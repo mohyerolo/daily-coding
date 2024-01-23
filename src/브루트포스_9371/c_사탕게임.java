@@ -30,11 +30,9 @@ public class c_사탕게임 {
     private static void swapCol() {
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N - 1; j++) {
-                if (arr[i][j] != arr[i][j + 1]) {
-                    swap(i, j, i, j + 1);
-                    checkColSwapEffect(i, j);
-                    swap(i, j, i, j + 1);
-                }
+                swap(i, j, i, j + 1);
+                checkColSwapEffect(i, j);
+                swap(i, j, i, j + 1);
             }
         }
     }
