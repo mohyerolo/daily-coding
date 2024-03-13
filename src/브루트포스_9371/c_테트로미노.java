@@ -50,7 +50,7 @@ public class c_테트로미노 {
             int row = y + dy[i];
             int col = x + dx[i];
 
-            if (row < 0 || row >= n || col < 0 || col >= m) {
+            if (!checkRowAndCol(row,col)) {
                 continue;
             }
 

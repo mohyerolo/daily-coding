@@ -1,4 +1,4 @@
-package 브루트포스_N과M_9372;
+package 브루트포스_9372_N과M;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,11 +1,11 @@
-package 브루트포스_N과M_9372;
+package 브루트포스_9372_N과M;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class c_NM과K_1_2 {
+public class c_NM과K {
     private static int N, M, K;
     private static int max = Integer.MIN_VALUE;
     private static int[][] arr;
@@ -19,17 +19,17 @@ public class c_NM과K_1_2 {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
-        arr = new int[N + 1][M + 1];
-        visit = new boolean[N + 1][M + 1];
+        arr = new int[N][M];
+        visit = new boolean[N][M];
 
-        for (int i = 1; i < N + 1; i++) {
+        for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
-            for (int j = 1; j < M + 1; j++) {
+            for (int j = 0; j < M; j++) {
                 arr[i][j] = Integer.parseInt(st.nextToken());
             }
         }
 
-        backTracking(1, 1, 0, 0);
+        backTracking(0, 0, 0, 0);
         System.out.println(max);
     }
 
@@ -39,11 +39,11 @@ public class c_NM과K_1_2 {
             return;
         }
 
-        for (int i = row; i < N + 1; i++) {
-            for (int j = (i == row ? col : 1); j < M + 1; j++) {
+        for (int i = row; i < N; i++) {
+            for (int j = (i == row ? col : 0); j < M; j++) {
                 if (!visit[i][j] && !borderOnSpace(i, j)) {
                     visit[i][j] = true;
-                    backTracking(i, j, cnt + 1, sum + arr[i][j]);
+                    backTracking(i, j + 1, cnt + 1, sum + arr[i][j]);
                     visit[i][j] = false;
                 }
             }
@@ -51,7 +51,19 @@ public class c_NM과K_1_2 {
     }
 
     private static boolean borderOnSpace(int y, int x) {
-        if (visit[y][x - 1] || visit[y - 1][x]) return true;
+        for (int i = 0; i < 4; i++) {
+            int row = dy[i] + y;
+            int col = dx[i] + x;
+        
+            if (checkLimit(row, col)) {
+                if (visit[row][col]) return true;
+            }
+        }
         return false;
+    }
+
+    private static boolean checkLimit(int row, int col) {
+        if (row < 0 || row >= N || col < 0 || col >= M) return false;
+        return true;
     }
 }
