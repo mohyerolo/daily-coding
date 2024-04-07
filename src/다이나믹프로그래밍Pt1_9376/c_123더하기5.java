@@ -5,32 +5,27 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class c_123더하기5 {
-    private static int N;
-    private static Long[][] dp;
-
     public static void main(String[] args) throws IOException { 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        N = Integer.parseInt(br.readLine());
-        dp = new Long[N + 1][10];
+        int T = Integer.parseInt(br.readLine());
+        long[][] dp = new long[100001][4];
+        dp[1][1] = 1;
+        dp[2][2] = 1;
+        dp[3][1] = 1;
+        dp[3][2] = 1;
+        dp[3][3] = 1;
 
-        for (int i = 0; i < 10; i++) {
-            dp[1][i] = 1L;
+        for (int i = 4; i < 100001; i++) {
+            dp[i][1] = (dp[i - 1][2] + dp[i - 1][3]) % 1000000009;
+            dp[i][2] = (dp[i - 2][1] + dp[i - 2][3]) % 1000000009;
+            dp[i][3] = (dp[i - 3][1] + dp[i - 3][2]) % 1000000009;
         }
 
-        long result = 0;
-        for (int i = 1; i < 10; i++) {
-            result += find(N, i);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < T; i++) {
+            int n = Integer.parseInt(br.readLine());
+            sb.append((dp[n][1] + dp[n][2] + dp[n][3]) % 1000000009).append('\n');
         }
-
-        System.out.println(result % 1000000000);
+        System.out.println(sb);
     }    
-
-    private static Long find(int digit, int num) {
-        if (dp[digit][num] == null) {
-            if (num == 0) dp[digit][num] = find(digit - 1, 1);
-            else if (num == 9) dp[digit][num] = find(digit - 1, 8);
-            else dp[digit][num] = find(digit - 1, num - 1) + find(digit - 1, num + 1);
-        }
-        return dp[digit][num] % 1000000000;
-    }
 }
