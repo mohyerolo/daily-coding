@@ -3,9 +3,7 @@ package doItAlgoCoTe.자료구조;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayDeque;
 import java.util.PriorityQueue;
-import java.util.Queue;
 
 // https://www.acmicpc.net/problem/11286
 public class d14_3_5_절댓값힙 {

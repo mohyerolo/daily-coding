@@ -1,4 +1,4 @@
-package doItAlgoCoTe.정렬;
+package doItAlgoCoTe.탐색.dfs;
 
 import java.io.BufferedReader;
 import java.io.IOException;
