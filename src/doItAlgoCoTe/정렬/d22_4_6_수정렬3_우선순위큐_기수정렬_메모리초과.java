@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 // https://www.acmicpc.net/problem/10989
-// 우선순위큐 이용 -> 메모리 초과 (Integer)
+// 우선순위큐 이용 -> 메모리 초과 (Integer, LinkedList)
 public class d22_4_6_수정렬3_우선순위큐_기수정렬_메모리초과 {
     private static int[] A;
     private static int N;
