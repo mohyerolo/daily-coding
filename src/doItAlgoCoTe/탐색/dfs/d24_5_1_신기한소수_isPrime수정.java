@@ -3,7 +3,7 @@ package doItAlgoCoTe.탐색.dfs;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+// https://www.acmicpc.net/problem/2023
 public class d24_5_1_신기한소수_isPrime수정 {
     private static int N;
     private static StringBuilder sb = new StringBuilder();
