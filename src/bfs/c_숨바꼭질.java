@@ -11,58 +11,47 @@ import java.util.StringTokenizer;
 public class c_숨바꼭질 {
     private static int N, K;
     private static boolean[] visit;
-    private static Queue<Section> queue = new LinkedList<>();
-
+    private static Queue<Node> queue = new LinkedList<Node>();
+    
     public static void main(String[] args) throws IOException { 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
+        
         visit = new boolean[100001];
-
-        System.out.println(bfs());
+        System.out.println(bfs(new Node(N, 0)));
     }
 
-    private static int bfs() {
-        queue.offer(new Section(N, 0));
+    private static int bfs(Node node) {
+        queue.offer(node);
 
         while (!queue.isEmpty()) {
-            Section section = queue.poll();
-            int now = section.num;
-            int nowCnt = section.cnt;
+            Node now = queue.poll();
+            int num = now.num;
+            int nowCnt = now.cnt;
 
-            if (now == K) return nowCnt;
-            if (visit[now]) continue;
+            if (num == K) return nowCnt;
+            if (visit[num]) continue;
 
-            visit[now] = true;
-            tryMinusOne(now, nowCnt);
-            tryPlusOne(now, nowCnt);
-            tryMultiplyTwo(now, nowCnt);
+            visit[num] = true;
+            move(num - 1, nowCnt);
+            move(num + 1, nowCnt);
+            move(num * 2, nowCnt);
         }
-
         return -1;
     }
 
-    private static void tryMinusOne(int now, int nowCnt) {
-        if (now - 1 < 0 || visit[now - 1]) return;
-        queue.offer(new Section(now - 1, nowCnt + 1));
+    private static void move(int num, int cnt) {
+        if (num < 0 || num > 100000 || visit[num]) return;
+        queue.offer(new Node(num, cnt + 1));
     }
+}
 
-    private static void tryPlusOne(int now, int nowCnt) {
-        if (now + 1 > 100000 || visit[now + 1]) return;
-        queue.offer(new Section(now + 1, nowCnt + 1));
-    }
-
-    private static void tryMultiplyTwo(int now, int nowCnt) {
-        if (now * 2 > 100000 || visit[now * 2]) return;
-        queue.offer(new Section(now * 2, nowCnt + 1));
-    }
-
-    private static class Section {
-        int num, cnt;
-        public Section(int num, int cnt) {
-            this.num = num;
-            this.cnt = cnt;
-        }
+class Node {
+    int num, cnt;
+    Node(int num, int cnt) {
+        this.num = num;
+        this.cnt = cnt;
     }
 }
