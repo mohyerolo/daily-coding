@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
+// https://www.acmicpc.net/problem/14226
 public class c_이모티콘 {
     private static int S;
     private static Queue<int[]> queue = new ArrayDeque<>();
