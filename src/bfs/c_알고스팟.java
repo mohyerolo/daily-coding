@@ -7,6 +7,7 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+// https://www.acmicpc.net/problem/1261
 public class c_알고스팟 {
     private static class Wall implements Comparable<Wall>{
         int row, col, brokenCnt;
@@ -26,7 +27,6 @@ public class c_알고스팟 {
     private static int[] dy = {-1, 1, 0, 0};
     private static boolean[][] visit;
     private static byte[][] map;
-    private static int result;
 
     public static void main(String[] args) throws IOException { 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -45,11 +45,10 @@ public class c_알고스팟 {
             map[i] = br.readLine().getBytes();
         }
 
-        bfs();
-        System.out.println(result);
+        System.out.println(bfs());
     }   
 
-    private static void bfs() {
+    private static int bfs() {
         Queue<Wall> queue = new PriorityQueue<Wall>();
         queue.offer(new Wall(0, 0, 0));
         visit[0][0] = true;
@@ -58,12 +57,12 @@ public class c_알고스팟 {
             Wall wall = queue.poll();
 
             if (wall.row == N - 1 && wall.col == M - 1) {
-                result = wall.brokenCnt;
-                return;
+                return wall.brokenCnt;
             }
             
             checkUpDownLeftRight(queue, wall);   
         }
+        return -1;
     }
 
     private static void checkUpDownLeftRight(Queue<Wall> queue, Wall wall) {
