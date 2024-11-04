@@ -7,6 +7,9 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+// https://www.acmicpc.net/problem/9019
+// 메모리: 310060KB, 시간 4468ms -> String배열만 사용 다음으로 많은 메모리, 시간
+
 public class c_DSLR_class_eunm_사용 {
     private static StringBuilder sb = new StringBuilder();
     private static boolean[] visit;
