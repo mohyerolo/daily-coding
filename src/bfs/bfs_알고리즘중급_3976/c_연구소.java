@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+// https://www.acmicpc.net/problem/14502
+// 메모리: 305084	시간: 1068
 public class c_연구소 {
     private static final int WALL_MAX_CNT = 3;
     private static final int VIRUS = 2;
@@ -114,7 +116,7 @@ public class c_연구소 {
         }
     }
 
-    private static boolean checkRange(int row, int col) {
+    private static boolean checkRange(final int row, final int col) {
         if (row < 0 || row >= N || col < 0 || col >= M || copy[row][col] != 0) return false;
         return true;
     }
